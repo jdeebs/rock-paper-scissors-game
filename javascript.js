@@ -3,10 +3,8 @@ function game() {
   let playerWin = 0;
   let computerWin = 0;
   let roundNumber = 1;
-  let playerChoice = getPlayerChoice();
-  let computerChoice = getComputerChoice();
 
-  function getPlayerChoice(playerChoice, computerChoice) {
+  function getPlayerChoice() {
     let choice = ["rock", "paper", "scissors"];
   
     let playerChoice = prompt("Type rock, paper, or scissors for your choice: ");
@@ -14,7 +12,7 @@ function game() {
     if (playerChoice !== null) {
       if (choice.includes(playerChoice.toLowerCase())) {
         console.log("You chose: " + playerChoice.toLowerCase());
-        console.log("Computer chose: " + computerChoice.toLowerCase());
+        
         return playerChoice;
       } else {
         console.log("Invalid choice.");
@@ -28,6 +26,8 @@ function game() {
     let choice = ["rock", "paper", "scissors"];
   
     let computerChoice = choice[Math.floor(Math.random() * choice.length)];
+
+    console.log("Computer chose: " + computerChoice.toLowerCase());
   
     return computerChoice;
   }
@@ -78,6 +78,8 @@ function game() {
   }
   
   for (let i = 0; i < 5; i++) {
+    let playerChoice = getPlayerChoice();
+    let computerChoice = getComputerChoice();
     playRound(playerChoice, computerChoice);
     console.log(`Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`);
     roundNumber++;
