@@ -31,10 +31,10 @@ function playRound(playerChoice, computerChoice) {
   switch (playerChoice) {
     case "rock":
       if (computerChoice === "scissors") {
-        console.log("You win! rock beats scissors");
+        console.log("You win! Rock beats scissors");
         return playerWin++;
       } else if (computerChoice === "paper") {
-        console.log("Computer wins! paper beats rock");
+        console.log("Computer wins! Paper beats rock");
         return computerWin++;
       } else {
         console.log("You tied.");
@@ -42,10 +42,10 @@ function playRound(playerChoice, computerChoice) {
         break;
     case "paper":
       if (computerChoice === "scissors") {
-        console.log("Computer wins! scissors beats paper");
+        console.log("Computer wins! Scissors beats paper");
         return computerWin++;
       } else if (computerChoice === "rock") {
-        console.log("You win! paper beats rock");
+        console.log("You win! Paper beats rock");
         return playerWin++;
       } else {
         console.log("You tied.");
@@ -53,10 +53,10 @@ function playRound(playerChoice, computerChoice) {
         break;
     case "scissors":
       if (computerChoice === "rock") {
-        console.log("Computer wins! rock beats scissors");
+        console.log("Computer wins! Rock beats scissors");
         return computerWin++;
       } else if (computerChoice === "paper") {
-        console.log("You win! scissors beat paper");
+        console.log("You win! Scissors beat paper");
         return playerWin++;
       } else {
         console.log("You tied.");
