@@ -1,5 +1,3 @@
-let computerChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
 let playerWin = 0;
 let computerWin = 0;
 let roundNumber = 1;
@@ -68,11 +66,16 @@ function playRound(playerChoice, computerChoice) {
       console.log("Unknown Error.");
       break;
   }
-  return roundNumber++;
 }
 
 function game() {
   for (let i = 0; i < 5; i++) {
+    let computerChoice = getComputerChoice();
+    let playerChoice = getPlayerChoice();
+    playRound(playerChoice, computerChoice);
     console.log(`Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`);
+    roundNumber++;
   }
 }
+
+game();
