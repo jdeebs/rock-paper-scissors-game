@@ -2,7 +2,7 @@ let computerChoice = getComputerChoice();
 let playerChoice = getPlayerChoice();
 let playerWin = 0;
 let computerWin = 0;
-let roundNumber = 0;
+let roundNumber = 1;
 
 function getComputerChoice() {
   let choice = ["rock", "paper", "scissors"];
@@ -38,7 +38,9 @@ function playRound(playerChoice, computerChoice) {
       } else if (computerChoice === "paper") {
         console.log("Computer wins! paper beats rock");
         return computerWin++;
-      } else
+      } else {
+        console.log("You tied.");
+      }
         break;
     case "paper":
       if (computerChoice === "scissors") {
@@ -47,7 +49,9 @@ function playRound(playerChoice, computerChoice) {
       } else if (computerChoice === "rock") {
         console.log("You win! paper beats rock");
         return playerWin++;
-      } else
+      } else {
+        console.log("You tied.");
+      }
         break;
     case "scissors":
       if (computerChoice === "rock") {
@@ -56,11 +60,19 @@ function playRound(playerChoice, computerChoice) {
       } else if (computerChoice === "paper") {
         console.log("You win! scissors beat paper");
         return playerWin++;
-      } else
+      } else {
+        console.log("You tied.");
+      }
         break;
     default:
-      console.log("You tied.");
+      console.log("Unknown Error.");
       break;
   }
+  return roundNumber++;
+}
 
+function game() {
+  for (let i = 0; i < 5; i++) {
+    console.log(`Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`);
+  }
 }
