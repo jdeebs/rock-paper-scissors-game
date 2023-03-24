@@ -76,6 +76,14 @@ function game() {
     console.log(`Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`);
     roundNumber++;
   }
+
+  if (computerWin > playerWin) {
+    console.log("You lost the game. Better luck next time!");
+  } else if (playerWin > computerWin) {
+    console.log("You won the game! Congrats!");
+  } else {
+    console.log("You tied the game!");
+  }
 }
 
 game();
