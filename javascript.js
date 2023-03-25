@@ -1,4 +1,3 @@
-
 function game() {
   let playerWin = 0;
   let computerWin = 0;
@@ -12,8 +11,8 @@ function game() {
     if (playerChoice !== null) {
       if (choice.includes(playerChoice.toLowerCase())) {
         console.log("You chose: " + playerChoice.toLowerCase());
-        
-        return playerChoice;
+
+        return playerChoice.toLowerCase();
       } else {
         console.log("Invalid choice.");
       }
