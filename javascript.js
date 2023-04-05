@@ -1,25 +1,31 @@
-function game() {
-  let playerWin = 0;
-  let computerWin = 0;
-  let roundNumber = 1;
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
 
-  function getPlayerChoice() {
-    let choice = ["rock", "paper", "scissors"];
-  
-    let playerChoice = prompt("Type rock, paper, or scissors for your choice: ");
-  
-    if (playerChoice !== null) {
-      if (choice.includes(playerChoice.toLowerCase())) {
-        console.log("You chose: " + playerChoice.toLowerCase());
+let playerWin = 0;
+let computerWin = 0;
+let roundNumber = 1;
 
-        return playerChoice.toLowerCase();
-      } else {
-        console.log("Invalid choice.");
-      }
-    } else {
-      console.log("Cancelled.");
-    }
-  }
+rock.addEventListener('click', () => {
+    let playerChoice = "rock";
+    console.log('You chose: Rock');
+    let computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
+  });
+
+paper.addEventListener('click', () => {
+  let playerChoice = "paper";
+  console.log('You chose: Paper');
+  let computerChoice = getComputerChoice();
+  playRound(playerChoice, computerChoice);
+});
+
+scissors.addEventListener('click', () => {
+  let playerChoice = "scissors";
+  console.log('You chose: Scissors');
+  let computerChoice = getComputerChoice();
+  playRound(playerChoice, computerChoice);
+});
 
   function getComputerChoice() {
     let choice = ["rock", "paper", "scissors"];
@@ -75,14 +81,6 @@ function game() {
         break;
     }
   }
-  
-  for (let i = 0; i < 5; i++) {
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
-    playRound(playerChoice, computerChoice);
-    console.log(`Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`);
-    roundNumber++;
-  }
 
   if (computerWin > playerWin) {
     console.log("You lost the game. Better luck next time!");
@@ -91,6 +89,4 @@ function game() {
   } else {
     console.log("You tied the game!");
   }
-}
 
-game();

@@ -1,0 +1,23 @@
+button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#rock {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+#paper {
+  background-color: #3498db;
+  color: #fff;
+}
+
+#scissors {
+  background-color: #2ecc71;
+  color: #fff;
+}
