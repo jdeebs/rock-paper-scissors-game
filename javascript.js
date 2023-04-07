@@ -1,92 +1,167 @@
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
+let resultDiv = document.querySelector('#resultDiv');
+let scoreDiv = document.querySelector('#scoreDiv');
 
 let playerWin = 0;
 let computerWin = 0;
-let roundNumber = 1;
+let roundNumber = 0;
 
 rock.addEventListener('click', () => {
-    let playerChoice = "rock";
-    console.log('You chose: Rock');
-    let computerChoice = getComputerChoice();
-    playRound(playerChoice, computerChoice);
-  });
+  resultDiv.innerHTML = "";
+
+  if (roundNumber === 0) {
+    scoreDiv.innerHTML = "";
+  }
+
+  updateGame("Rock");
+});
 
 paper.addEventListener('click', () => {
-  let playerChoice = "paper";
-  console.log('You chose: Paper');
-  let computerChoice = getComputerChoice();
-  playRound(playerChoice, computerChoice);
+  resultDiv.innerHTML = "";
+
+  if (roundNumber === 0) {
+    scoreDiv.innerHTML = "";
+  }
+
+  updateGame("Paper");
 });
 
 scissors.addEventListener('click', () => {
-  let playerChoice = "scissors";
-  console.log('You chose: Scissors');
-  let computerChoice = getComputerChoice();
-  playRound(playerChoice, computerChoice);
+  resultDiv.innerHTML = "";
+
+  if (roundNumber === 0) {
+    scoreDiv.innerHTML = "";
+  }
+
+  updateGame("Scissors");
 });
 
-  function getComputerChoice() {
-    let choice = ["rock", "paper", "scissors"];
-  
-    let computerChoice = choice[Math.floor(Math.random() * choice.length)];
+function updateGame(playerChoice) {
+  roundNumber++;
+  let textNode = document.createElement('p');
+  textNode.textContent = `You chose: ${playerChoice}`;
+  resultDiv.appendChild(textNode);
+  let computerChoice = getComputerChoice();
+  playRound(playerChoice, computerChoice);
+  getScore();
+}
 
-    console.log("Computer chose: " + computerChoice.toLowerCase());
-  
-    return computerChoice;
-  }
-  
-  function playRound(playerChoice, computerChoice) {
-    switch (playerChoice) {
-      case "rock":
-        if (computerChoice === "scissors") {
-          console.log("You win! Rock beats scissors");
-          return playerWin++;
-        } else if (computerChoice === "paper") {
-          console.log("Computer wins! Paper beats rock");
-          return computerWin++;
-        } else {
-          console.log("You tied.");
-        }
-          break;
-      case "paper":
-        if (computerChoice === "scissors") {
-          console.log("Computer wins! Scissors beats paper");
-          return computerWin++;
-        } else if (computerChoice === "rock") {
-          console.log("You win! Paper beats rock");
-          return playerWin++;
-        } else {
-          console.log("You tied.");
-        }
-          break;
-      case "scissors":
-        if (computerChoice === "rock") {
-          console.log("Computer wins! Rock beats scissors");
-          return computerWin++;
-        } else if (computerChoice === "paper") {
-          console.log("You win! Scissors beat paper");
-          return playerWin++;
-        } else {
-          console.log("You tied.");
-        }
-          break;
-      default:
-        if (playerChoice == null) {
-          console.log("Cancelled.")
-        } else {
-        console.log("Unknown Error.");
-        }
-        break;
+function getScore() {
+  let textNode = document.createElement('p');
+  textNode.textContent = `Round ${roundNumber}.\nThe score is:\nComputer: ${computerWin}\nPlayer: ${playerWin}`;
+  scoreDiv.appendChild(textNode);
+
+  if (roundNumber === 5) {
+    let textNode = document.createElement('p');
+    textNode.textContent = "GAME OVER";
+    resultDiv.appendChild(textNode);
+    let brElement = document.createElement('br');
+    resultDiv.appendChild(brElement);
+    
+    if (computerWin > playerWin) {
+      let textNode = document.createElement('p');
+      textNode.textContent = "You lost the game. Better luck next time!";
+      resultDiv.appendChild(textNode);
+    } else if (playerWin > computerWin) {
+      let textNode = document.createElement('p');
+      textNode.textContent = "You won the game! Congrats!";
+      resultDiv.appendChild(textNode);
+    } else if (roundNumber !== 5) {
+        let textNode = document.createElement('p');
+        textNode.textContent = "";
+        resultDiv.appendChild(textNode);
+    } else {
+      let textNode = document.createElement('p');
+      textNode.textContent = "You tied the game!";
+      resultDiv.appendChild(textNode);
     }
+    roundNumber = 0;
+    playerWin = 0;
+    computerWin = 0;
+  }
+}
+
+function getComputerChoice() {
+  let choice = ["Rock", "Paper", "Scissors"];
+
+  let computerChoice = choice[Math.floor(Math.random() * choice.length)];
+
+  let textNode = document.createElement('p');
+  textNode.textContent = `Computer chose: ${computerChoice}`;
+  resultDiv.appendChild(textNode);
+
+  return computerChoice;
+}
+
+function playRound(playerChoice, computerChoice) {
+
+  if (roundNumber >= 5) {
+    resultDiv.textContent = "";
   }
 
-  if (computerWin > playerWin) {
-    console.log("You lost the game. Better luck next time!");
-  } else if (playerWin > computerWin) {
-    console.log("You won the game! Congrats!");
-  } else {
-    console.log("You tied the game!");
+  switch (playerChoice) {
+    case "Rock":
+      if (computerChoice === "Scissors") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You win! Rock beats scissors";
+        resultDiv.appendChild(textNode);
+        return playerWin++;
+      } else if (computerChoice === "Paper") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "Computer wins! Paper beats rock";
+        resultDiv.appendChild(textNode);
+        return computerWin++;
+      } else {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You tied!";
+        resultDiv.appendChild(textNode);
+      }
+      break;
+    case "Paper":
+      if (computerChoice === "Scissors") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "Computer wins! Scissors beats paper";
+        resultDiv.appendChild(textNode);
+        return computerWin++;
+      } else if (computerChoice === "Rock") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You win! Paper beats rock";
+        resultDiv.appendChild(textNode);
+        return playerWin++;
+      } else {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You tied!";
+        resultDiv.appendChild(textNode);
+      }
+      break;
+    case "Scissors":
+      if (computerChoice === "Rock") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "Computer wins! Rock beats scissors";
+        resultDiv.appendChild(textNode);
+        return computerWin++;
+      } else if (computerChoice === "Paper") {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You win! Scissors beat paper";
+        resultDiv.appendChild(textNode);
+        return playerWin++;
+      } else {
+        let textNode = document.createElement('p');
+        textNode.textContent = "You tied!";
+        resultDiv.appendChild(textNode);
+      }
+      break;
+    default:
+      if (playerChoice == null) {
+        console.log("Cancelled.")
+      } else {
+        console.log("Unknown Error.");
+      }
+      break;
   }
+}
+
+
 

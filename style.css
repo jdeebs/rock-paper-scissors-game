@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(44, 44, 44);
+}
+
 button {
   font-size: 18px;
   font-weight: bold;
